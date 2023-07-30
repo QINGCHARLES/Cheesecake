@@ -2,8 +2,6 @@
 @model Cheesecake.Pages.ShipsModel
 @{
 }
-
-
 <div id="board">
 	<div id="messageArea"></div>
 	<table>
@@ -16,8 +14,10 @@
 			<th class="numbers">4</th>
 			<th class="numbers">5</th>
 			<th class="numbers">6</th>
+			<th class="numbers">7</th>
+			<th class="numbers">8</th>
+			<th class="numbers">9</th>
 		</tr>
-
 		<tr>
 			<th class="letters">A</th>
 			<td><div id="00"></div></td>
@@ -27,6 +27,9 @@
 			<td><div id="04"></div></td>
 			<td><div id="05"></div></td>
 			<td><div id="06"></div></td>
+			<td><div id="07"></div></td>
+			<td><div id="08"></div></td>
+			<td><div id="09"></div></td>
 		</tr>
 		<tr>
 			<th class="letters">B</th>
@@ -37,6 +40,10 @@
 			<td><div id="14"></div></td>
 			<td><div id="15"></div></td>
 			<td><div id="16"></div></td>
+			<td><div id="17"></div></td>
+			<td><div id="18"></div></td>
+			<td><div id="19"></div></td>
+		</tr>
 		<tr>
 			<th class="letters">C</th>
 			<td><div id="20"></div></td>
@@ -46,7 +53,9 @@
 			<td><div id="24"></div></td>
 			<td><div id="25"></div></td>
 			<td><div id="26"></div></td>
-		</tr>
+			<td><div id="27"></div></td>
+			<td><div id="28"></div></td>
+			<td><div id="29"></div></td>
 		</tr>
 		<tr>
 			<th class="letters">D</th>
@@ -57,9 +66,12 @@
 			<td><div id="34"></div></td>
 			<td><div id="35"></div></td>
 			<td><div id="36"></div></td>
+			<td><div id="37"></div></td>
+			<td><div id="38"></div></td>
+			<td><div id="39"></div></td>
 		</tr>
 		<tr>
-			<th class="letters">E</td>
+			<th class="letters">E</th>
 			<td><div id="40"></div></td>
 			<td><div id="41"></div></td>
 			<td><div id="42"></div></td>
@@ -67,9 +79,12 @@
 			<td><div id="44"></div></td>
 			<td><div id="45"></div></td>
 			<td><div id="46"></div></td>
+			<td><div id="47"></div></td>
+			<td><div id="48"></div></td>
+			<td><div id="49"></div></td>
 		</tr>
 		<tr>
-			<th class="letters">F</td>
+			<th class="letters">F</th>
 			<td><div id="50"></div></td>
 			<td><div id="51"></div></td>
 			<td><div id="52"></div></td>
@@ -77,9 +92,12 @@
 			<td><div id="54"></div></td>
 			<td><div id="55"></div></td>
 			<td><div id="56"></div></td>
+			<td><div id="57"></div></td>
+			<td><div id="58"></div></td>
+			<td><div id="59"></div></td>
 		</tr>
 		<tr>
-			<th class="letters">G</td>
+			<th class="letters">G</th>
 			<td><div id="60"></div></td>
 			<td><div id="61"></div></td>
 			<td><div id="62"></div></td>
@@ -87,184 +105,52 @@
 			<td><div id="64"></div></td>
 			<td><div id="65"></div></td>
 			<td><div id="66"></div></td>
+			<td><div id="67"></div></td>
+			<td><div id="68"></div></td>
+			<td><div id="69"></div></td>
+		</tr>
+		<tr>
+			<th class="letters">H</th>
+			<td><div id="70"></div></td>
+			<td><div id="71"></div></td>
+			<td><div id="72"></div></td>
+			<td><div id="73"></div></td>
+			<td><div id="74"></div></td>
+			<td><div id="75"></div></td>
+			<td><div id="76"></div></td>
+			<td><div id="77"></div></td>
+			<td><div id="78"></div></td>
+			<td><div id="79"></div></td>
+		</tr>
+		<tr>
+			<th class="letters">I</th>
+			<td><div id="80"></div></td>
+			<td><div id="81"></div></td>
+			<td><div id="82"></div></td>
+			<td><div id="83"></div></td>
+			<td><div id="84"></div></td>
+			<td><div id="85"></div></td>
+			<td><div id="86"></div></td>
+			<td><div id="87"></div></td>
+			<td><div id="88"></div></td>
+			<td><div id="89"></div></td>
+		</tr>
+		<tr>
+			<th class="letters">J</th>
+			<td><div id="90"></div></td>
+			<td><div id="91"></div></td>
+			<td><div id="92"></div></td>
+			<td><div id="93"></div></td>
+			<td><div id="94"></div></td>
+			<td><div id="95"></div></td>
+			<td><div id="96"></div></td>
+			<td><div id="97"></div></td>
+			<td><div id="98"></div></td>
+			<td><div id="99"></div></td>
 		</tr>
 	</table>
 </div>
 <script type="text/javascript">
-
-	var model = {
-		boardSize: 7,
-		numShips: 3,
-		shipLength: 3,
-		shipsSunk: 0,
-
-		ships: [
-			{ locations: [0, 0, 0], hits: ["", "", ""] },
-			{ locations: [0, 0, 0], hits: ["", "", ""] },
-			{ locations: [0, 0, 0], hits: ["", "", ""] }
-		],
-
-		fire: function (guess)
-		{
-			for (var i = 0; i < this.numShips; i++)
-			{
-				var ship = this.ships[i];
-				var index = ship.locations.indexOf(guess); // przesukuje tablice w celu znalezienia guess i zwraca indeks
-				if (ship.hits[index] === "hit")
-				{
-					view.displayMessage("You hit this ship before.");
-					return true;
-				} else if (index >= 0)
-				{
-					ship.hits[index] = "hit";
-					view.displayHit(guess);
-					view.displayMessage("It's a hit!");
-					if (this.isSunk(ship))
-					{
-						view.displayMessage("You sunk my battleship!");
-						this.shipsSunk++;
-					}
-					return true;
-				}
-			}
-			view.displayMiss(guess);
-			view.displayMessage("It's a miss!");
-			return false;
-		},
-
-		isSunk: function (ship)
-		{
-			for (i = 0; i < this.shipLength; i++)
-			{
-				if (ship.hits[i] !== "hit")
-				{
-					return false;
-				}
-			}
-			return true;
-		},
-
-		generateShipLocations: function ()
-		{
-			var locations;
-			for (var i = 0; i < this.numShips; i++)
-			{
-				do
-				{
-					locations = this.generateShip();
-				} while (this.collision(locations));
-				this.ships[i].locations = locations;
-			}
-			console.log("Tablica okrętów: ");
-			console.log(this.ships);
-		},
-
-		generateShip: function ()
-		{
-			var direction = Math.floor(Math.random() * 2);
-			var row, col;
-
-			if (direction === 1)
-			{  //rozmieszczamy w poziomie
-				row = Math.floor(Math.random() * this.boardSize);
-				col = Math.floor(Math.random() * (this.boardSize - this.shipLength));
-			} else
-			{ //rozmieszczmay w pionie
-				row = Math.floor(Math.random() * (this.boardSize - this.shipLength));
-				col = Math.floor(Math.random() * this.boardSize);
-			}
-
-			var newShipLocations = [];
-			for (var i = 0; i < this.shipLength; i++)
-			{
-				if (direction === 1)
-				{
-					newShipLocations.push(row + "" + (col + i));
-				} else
-				{
-					newShipLocations.push((row + i) + "" + col);
-				}
-			}
-			return newShipLocations;
-		},
-
-		collision: function (locations)
-		{
-			for (var i = 0; i < this.numShips; i++)
-			{
-				var ship = this.ships[i];
-				for (var j = 0; j < locations.length; j++)
-				{
-					if (ship.locations.indexOf(locations[j]) >= 0)
-					{
-						return true;
-					}
-				}
-			}
-			return false;
-		}
-
-	};
-
-	var view = {
-		displayMessage: function (msg)
-		{
-			var messageArea = document.getElementById("messageArea");
-			messageArea.innerHTML = msg;
-		},
-
-		displayHit: function (location)
-		{
-			var cell = document.getElementById(location);
-			cell.setAttribute("class", "hit");
-
-		},
-
-		displayMiss: function (location)
-		{
-			var cell = document.getElementById(location);
-			cell.setAttribute("class", "miss");
-		}
-	};
-
-	var controller = {
-		guesses: 0,
-		processGuess: function (location)
-		{
-			if (location)
-			{
-				this.guesses++;
-				var hit = model.fire(location);
-				if (hit && model.shipsSunk === model.numShips)
-				{
-					view.displayMessage("You sunk all of my battleships in " + this.guesses + " tries.");
-					var end = document.getElementById("guessInput").disabled = true;
-				}
-			}
-		}
-	}
-
-	window.onload = init;
-
-	function init()
-	{
-
-		var guessClick = document.getElementsByTagName("td");
-		for (var i = 0; i < guessClick.length; i++)
-		{
-			guessClick[i].onclick = answer;
-		}
-
-		model.generateShipLocations();
-		view.displayMessage("Hello, let's play! There are 3 ships, each 3 cells long");
-	}
-
-	function answer(eventObj)
-	{
-		var shot = eventObj.target;
-		var location = shot.id;
-		controller.processGuess(location);
-	}
 
 
 

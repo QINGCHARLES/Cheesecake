@@ -33,16 +33,30 @@ body {
     box-sizing: border-box;
 }
 
+html
+{
+	font-size: 16px;
+}
+
 body
 {
-    background: #6FC3ED;
+    background: #222;
+    ffont-size: 12px;
+}
+
+#bslogo
+{
+    margin: -2rem auto 0;
+    width: 25rem;
+    display: block;
 }
 
 #board
 {
     position: relative;
-    width: 100%;
-    min-width: 550px;
+    fwidth: 100%;
+    fmin-width: 550px;
+    font-size: 2px;
 }
 
 #messageArea
@@ -51,24 +65,26 @@ body
     text-align: center;
     margin-top: 5px;
     color: #f4f8ff;
-    font-family: "Fascinate Inline";
+    ffont-family: "Fascinate Inline";
     font-size: 25px;
+    font-weight: 800;
+    text-transform: uppercase;
 }
 
 table
 {
     border-collapse: separate;
-    border-spacing: 3px;
+    border-spacing: .8rem;
     margin: 0 auto;
 }
 
 td
 {
     position: relative;
-    width: 70px;
-    height: 70px;
-    border: 2px solid #152C59;
-    border-radius: 15px;
+    width: 5.0rem;
+    height: 5.0rem;
+    border: 2px solid #eee;
+    border-radius: .7rem;
 }
 
     td:hover
@@ -78,19 +94,23 @@ td
 
     td div
     {
-        width: 70px;
-        height: 70px;
+        width: 5.0rem;
+        height: 5.0rem;
     }
 
 .numbers, .letters
 {
     text-align: center;
     font-size: 20px;
-    font-family: "Baloo Bhaina";
+    ffont-family: "Baloo Bhaina";
     color: #f4f8ff;
     height: 40px;
     width: 40px;
     border: none;
+    font-family: sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    padding-right: 0.5rem;  
 }
 
 .hit
@@ -101,7 +121,7 @@ td
     width: 60px;
     height: 30px;
     background: #851B15;
-    border-radius: 5px 5px 50px 35px;
+    border-radius: .3rem .3rem 50px 35px;
     animation: wave 1s ease-in-out infinite alternate;
 }
 
@@ -143,18 +163,41 @@ td
     box-shadow: 15px 4px 0 -4px #AC3B35;
 }
 
+.hitb
+{
+    position: absolute;
+    top: -1.4rem;
+    left: -.8rem;
+    font-size: 5rem;
+    transform-origin: center center;
+    ftransform: rotate(100deg);
+    animation: blow 0.5s ease-in;
+}
+
+.missb
+{
+
+    position: absolute;
+    top: -1.4rem;
+    left: -.8rem;
+    font-size: 5rem;
+    transform-origin: center center;
+    ftransform: rotate(100deg);
+    animation: blow 0.5s ease-in;
+}
+
 .miss
 {
-    width: 60px;
-    height: 10px;
+    width: 6.5rem;
+    height: 1rem;
     position: absolute;
-    top: 30px;
-    left: 5px;
-    border-radius: 5px;
-    background: #47002B;
+    top: 2.2rem;
+    left: -0.5rem;
+    border-radius: .5rem;
+    background: #c00;
     transform-origin: center center;
     transform: rotate(45deg);
-    box-shadow: 3px 3px #C77DAA;
+    box-shadow: .2rem .3rem #500;
     animation: blow 0.5s ease-in;
 }
 
@@ -167,7 +210,7 @@ td
 
     1%
     {
-        transform: rotate(45deg);
+        ftransform: rotate(45deg);
     }
 
     80%
@@ -184,11 +227,12 @@ td
 .miss::after
 {
     content: '';
-    width: 60px;
-    height: 10px;
+    width: 6.3rem;
+    height: 1rem;
     position: absolute;
+    margin-left: .1rem;
     border-radius: 5px;
-    background: #47002B;
+    background: #f00;
     transform: rotate(90deg);
-    box-shadow: 3px -3px #C77DAA;
+    box-shadow: 3px -3px #700;
 }
