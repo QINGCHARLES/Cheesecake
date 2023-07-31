@@ -38,10 +38,19 @@ html
 	font-size: 16px;
 }
 
+html
+{
+    background: #000 url("/tiktokbg1.png") no-repeat center top fixed;
+    background-size: auto;
+}
+
 body
 {
     background: #000;
     ffont-size: 12px;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("/tiktokbg1.png") no-repeat left top fixed;
+    background-size: auto;
+    height: 100%;
 }
 
 #bslogo
