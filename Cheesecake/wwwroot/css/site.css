@@ -40,16 +40,16 @@ html
 
 html
 {
-    background: #000 url("/tiktokbg1.png") no-repeat center top fixed;
-    background-size: auto;
+    ffbackground: #000 url("/tiktokbg1.png") no-repeat center top;
+    fbackground-size: auto;
 }
 
 body
 {
     background: #000;
     ffont-size: 12px;
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("/tiktokbg1.png") no-repeat left top fixed;
-    background-size: auto;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("/tiktokbg1.png") no-repeat left top;
+    background-size: cover;
     height: 100%;
 }
 
@@ -113,6 +113,7 @@ td
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 2rem;
 }
 
 #timer
@@ -120,15 +121,17 @@ td
     font-size: 10rem;
     text-shadow: #25f4ee -.45rem -.45rem, #fe2c55 .45rem .45rem;
     color: #fff;
+    vertical-align: middle;
 }
 
-#timer span
-{
-    text-shadow: none;
-    font-size: 6rem;
-    padding-bottom: 3.5rem;
-    margin-bottom: 3rem;
-}
+    #timer::first-letter
+    {
+        ftext-shadow: none;
+        font-size: 6rem;
+        text-shadow: #25f4ee -.25rem -.25rem, #fe2c55 .25rem .25rem;
+        float: left;
+        padding-top: 2.5rem;
+    }
 
 .numbers
 {
@@ -138,6 +141,7 @@ td
 .letters
 {
     color: #fe2c55;
+    padding-right: 0.5rem;
 }
 
 .numbers, .letters
@@ -152,7 +156,7 @@ td
     font-family: sans-serif;
     font-weight: 800;
     font-size: 3rem;
-    padding-right: 0.5rem;  
+ 
 }
 
 .hit

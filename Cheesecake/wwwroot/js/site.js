@@ -21,7 +21,7 @@ function startCountdown()
 			document.getElementById("timer").innerHTML = "00:00";
 		} else
 		{
-			document.getElementById("timer").innerHTML = "<span>⏲</span>" + (minutes < 10 ? "0" : "") + minutes.toString() + ":" + (seconds < 10 ? "0" : "") + seconds.toString();
+			document.getElementById("timer").innerHTML = "⏳" + (minutes < 10 ? "0" : "") + minutes.toString() + ":" + (seconds < 10 ? "0" : "") + seconds.toString();
 		}
 	}, 1000);
 }
