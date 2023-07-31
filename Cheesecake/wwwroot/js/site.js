@@ -1,4 +1,35 @@
-﻿
+﻿var countdown;
+var minutes = 10;
+var seconds = 0;
+
+function startCountdown()
+{
+	clearInterval(countdown); // clear any existing interval
+
+	countdown = setInterval(function ()
+	{
+		seconds--;
+		if (seconds < 0)
+		{
+			seconds = 59;
+			minutes--;
+		}
+
+		if (minutes < 0)
+		{
+			clearInterval(countdown);
+			document.getElementById("timer").innerHTML = "00:00";
+		} else
+		{
+			document.getElementById("timer").innerHTML = "<span>⏲</span>" + (minutes < 10 ? "0" : "") + minutes.toString() + ":" + (seconds < 10 ? "0" : "") + seconds.toString();
+		}
+	}, 1000);
+}
+
+// Start countdown when page loads
+startCountdown();
+
+
 var model = {
 	boardSize: 10,
 	numShips: 5,
