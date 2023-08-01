@@ -1,5 +1,5 @@
 ﻿var countdown;
-var minutes = 1;
+var minutes = 10;
 var seconds = 0;
 
 function startCountdown()
