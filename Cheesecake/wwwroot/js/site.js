@@ -18,7 +18,7 @@ function startCountdown()
 		if (minutes < 0)
 		{
 			clearInterval(countdown);
-			document.getElementById("timer").innerHTML = "00:00";
+			document.getElementById("timer").innerHTML = "⏳00:00";
 		} else
 		{
 			document.getElementById("timer").innerHTML = "⏳" + (minutes < 10 ? "0" : "") + minutes.toString() + ":" + (seconds < 10 ? "0" : "") + seconds.toString();
@@ -29,12 +29,35 @@ function startCountdown()
 // Start countdown when page loads
 startCountdown();
 
+document.addEventListener('click', function (event)
+{
+	var comet = document.createElement('div');
+	comet.className = 'comet';
+	comet.textContent = '☄️'; // comet emoji
+	comet.style.top = event.clientY + 'px';
+	comet.style.left = event.clientX + 'px';
+	document.body.appendChild(comet);
+
+	comet.addEventListener('animationend', function ()
+	{
+		comet.parentNode.removeChild(comet);
+	});
+});
+
+
+function delayOneSecond()
+{
+	return new Promise(resolve => setTimeout(resolve, 1000));
+}
 
 var model = {
 	boardSize: 10,
 	numShips: 5,
 	shipLength: 3,
 	shipsSunk: 0,
+	chest: "",
+	mermaid: "",
+	monster: "",
 
 	ships: [
 		{ locations: [0, 0, 0], hits: ["", "", ""] },
@@ -46,6 +69,10 @@ var model = {
 
 	fire: function (guess)
 	{
+		if (guess === this.chest) { view.displayChest(guess); return; }
+		if (guess === this.mermaid) { view.displayMermaid(guess); return; }
+		if (guess === this.monster) { view.displayMonster(guess); return; }
+
 		for (var i = 0; i < this.numShips; i++)
 		{
 			var ship = this.ships[i];
@@ -97,6 +124,33 @@ var model = {
 			} while (this.collision(locations));
 			this.ships[i].locations = locations;
 		}
+
+		do
+		{
+			row = Math.floor(Math.random() * this.boardSize);
+			col = Math.floor(Math.random() * this.boardSize);
+			locations = [row + "" + col];
+			this.chest = row + "" + col;
+		} while (this.collision(locations));
+
+		do
+		{
+			row = Math.floor(Math.random() * this.boardSize);
+			col = Math.floor(Math.random() * this.boardSize);
+			locations = [row + "" + col];
+			this.mermaid = row + "" + col;
+		} while (this.collision(locations) || locations == this.chest );
+
+		do
+		{
+			row = Math.floor(Math.random() * this.boardSize);
+			col = Math.floor(Math.random() * this.boardSize);
+			locations = [row + "" + col];
+			this.monster = row + "" + col;
+		} while (this.collision(locations) || locations == this.chest || locations == this.mermaid);
+
+		alert(this.chest + " " + this.mermaid + " " + this.monster);
+
 		console.log("Generating ships: ");
 		console.log(this.ships);
 	},
@@ -164,6 +218,30 @@ var view = {
 
 	},
 
+	displayChest: function (location)
+	{
+		var cell = document.getElementById(location);
+		cell.parentElement.style.border = "none";
+		cell.innerText = "🏆";
+		cell.setAttribute("class", "hitb");
+	},
+
+	displayMermaid: function (location)
+	{
+		var cell = document.getElementById(location);
+		cell.parentElement.style.border = "none";
+		cell.innerText = "🧜‍";
+		cell.setAttribute("class", "hitb hitmer");
+	},
+
+	displayMonster: function (location)
+	{
+		var cell = document.getElementById(location);
+		cell.parentElement.style.border = "none";
+		cell.innerText = "🦑";
+		cell.setAttribute("class", "hitb");
+	},
+
 	displaySunk: function (ship)
 	{
 		for (i = 0; i < ship.locations.length; i++)
@@ -219,5 +297,5 @@ function answer(eventObj)
 {
 	var shot = eventObj.target;
 	var location = shot.id;
-	controller.processGuess(location);
+	delayOneSecond().then(() => controller.processGuess(location));
 }

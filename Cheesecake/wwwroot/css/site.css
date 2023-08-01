@@ -46,18 +46,52 @@ html
 
 body
 {
-    background: #000;
-    ffont-size: 12px;
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("/tiktokbg1.png") no-repeat left top;
-    background-size: cover;
+    position: relative;
     height: 100%;
+    margin: 0;
+    background: url("/tiktokbg1.png") no-repeat left top;
+    background-size: cover;
+    overflow: hidden;
 }
+
+    body::before
+    {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(45deg, rgba(0,0,0,0.5), rgba(0,0,0,0) 25%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5));
+        fbackground-color: #333;
+        background-size: 200% 200%;
+        animation: gradient 10s linear infinite;
+        fz-index: 0;
+    }
+
+@keyframes gradient
+{
+    0%
+    {
+        background-position: 100% 0;
+    }
+
+    100%
+    {
+        background-position: 0 100%;
+    }
+}
+
+
+
+
 
 #bslogo
 {
     fmargin: -2rem auto 0;
     width: 25rem;
     display: block;
+    z-index: 1;
 }
 
 #board
@@ -116,12 +150,46 @@ td
     padding: 0 2rem;
 }
 
+@keyframes flyIn
+{
+    0%
+    {
+        transform: translate(50vw, -50vh);
+        opacity: 1;
+    }
+
+    90%
+    {
+        opacity: 1;
+    }
+
+    100%
+    {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+}
+
+.comet
+{
+    position: absolute;
+    margin-left: -3rem;
+    animation: flyIn 1s ease-in forwards;
+    font-size: 4rem;
+}
+
+
+
+
+
 #timer
 {
     font-size: 10rem;
     text-shadow: #25f4ee -.45rem -.45rem, #fe2c55 .45rem .45rem;
     color: #fff;
     vertical-align: middle;
+    transform: rotate(-7deg);
+    font-family: monospace;
 }
 
     #timer::first-letter
@@ -218,6 +286,11 @@ td
     transform-origin: center center;
     ftransform: rotate(100deg);
     animation: blow 0.5s ease-in;
+}
+
+.hitmer
+{
+    left: .2rem !important;
 }
 
 .missb
