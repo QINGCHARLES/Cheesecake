@@ -1,5 +1,5 @@
 ﻿var countdown;
-var minutes = 10;
+var minutes = 1;
 var seconds = 0;
 
 function startCountdown()
@@ -22,6 +22,15 @@ function startCountdown()
 		} else
 		{
 			document.getElementById("timer").innerHTML = "⏳" + (minutes < 10 ? "0" : "") + minutes.toString() + ":" + (seconds < 10 ? "0" : "") + seconds.toString();
+
+			if (minutes < 1)
+			{
+				document.getElementById("timer").className = "alarm";
+			}
+			else
+			{
+				document.getElementById("timer").className = "";
+			}
 		}
 	}, 1000);
 }
@@ -149,7 +158,7 @@ var model = {
 			this.monster = row + "" + col;
 		} while (this.collision(locations) || locations == this.chest || locations == this.mermaid);
 
-		alert(this.chest + " " + this.mermaid + " " + this.monster);
+		//alert(this.chest + " " + this.mermaid + " " + this.monster);
 
 		console.log("Generating ships: ");
 		console.log(this.ships);

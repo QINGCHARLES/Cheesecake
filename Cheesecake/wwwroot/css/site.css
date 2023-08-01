@@ -201,6 +201,11 @@ td
         padding-top: 2.5rem;
     }
 
+    .alarm
+    {
+        color: yellow !important;
+    }
+
 .numbers
 {
     color: #25f4ee;
