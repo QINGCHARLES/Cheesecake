@@ -247,13 +247,14 @@ function delayOneSecond()
 }
 
 var model = {
-	boardSize: 10,
-	numShips: 5,
+	boardSize: 9,
+	numShips: 4,
 	shipLength: 3,
 	shipsSunk: 0,
 	chest: "",
 	mermaid: "",
 	monster: "",
+	shark: "",
 
 	ships: [
 		{ locations: [0, 0, 0], hits: ["", "", ""] },
@@ -268,6 +269,7 @@ var model = {
 		if (guess === this.chest) { view.displayChest(guess); shootConfetti(); return; }
 		if (guess === this.mermaid) { view.displayMermaid(guess); shootConfetti(); return; }
 		if (guess === this.monster) { view.displayMonster(guess); shootConfetti(); return; }
+		if (guess === this.shark) { view.displayShark(guess); shootConfetti(); return; }
 
 		for (var i = 0; i < this.numShips; i++)
 		{
@@ -346,7 +348,15 @@ var model = {
 			this.monster = row + "" + col;
 		} while (this.collision(locations) || locations == this.chest || locations == this.mermaid);
 
-		//alert(this.chest + " " + this.mermaid + " " + this.monster);
+		do
+		{
+			row = Math.floor(Math.random() * this.boardSize);
+			col = Math.floor(Math.random() * this.boardSize);
+			locations = [row + "" + col];
+			this.shark = row + "" + col;
+		} while (this.collision(locations) || locations == this.chest || locations == this.mermaid || locations == this.monster);
+
+		//alert(this.chest + " " + this.mermaid + " " + this.monster + " " + this.shark);
 
 		console.log("Generating ships: ");
 		console.log(this.ships);
@@ -412,6 +422,7 @@ var view = {
 		cell.parentElement.style.border = "none";
 		cell.innerText = "🚢";
 		cell.setAttribute("class", "hitb");
+		document.getElementById("explosion").play();
 
 	},
 
@@ -421,6 +432,8 @@ var view = {
 		cell.parentElement.style.border = "none";
 		cell.innerText = "🏆";
 		cell.setAttribute("class", "hitb");
+		document.getElementById("success3").play();
+		minutes += 1;
 	},
 
 	displayMermaid: function (location)
@@ -429,6 +442,8 @@ var view = {
 		cell.parentElement.style.border = "none";
 		cell.innerText = "🧜‍";
 		cell.setAttribute("class", "hitb hitmer");
+		document.getElementById("success7").play();
+		minutes += 1;
 	},
 
 	displayMonster: function (location)
@@ -437,14 +452,27 @@ var view = {
 		cell.parentElement.style.border = "none";
 		cell.innerText = "🦑";
 		cell.setAttribute("class", "hitb");
+		document.getElementById("success2").play();
+		minutes += 1;
 	},
 
+	displayShark: function (location)
+	{
+		var cell = document.getElementById(location);
+		cell.parentElement.style.border = "none";
+		cell.innerText = "🦈";
+		cell.setAttribute("class", "hitb");
+		document.getElementById("success2").play();
+		minutes += 1;
+	},
+	
 	displaySunk: function (ship)
 	{
 		for (i = 0; i < ship.locations.length; i++)
 		{
 			var cell = document.getElementById(ship.locations[i]);
 			cell.innerText = "💥";
+			document.getElementById("success3").play();
 		}
 	},
 
@@ -455,6 +483,7 @@ var view = {
 		cell.parentElement.style.border = "none";
 		cell.innerText = "🌊";
 		cell.setAttribute("class", "missb");
+		document.getElementById("splash").play();
 	}
 };
 
@@ -494,5 +523,6 @@ function answer(eventObj)
 {
 	var shot = eventObj.target;
 	var location = shot.id;
+	document.getElementById("bombfall").play();
 	delayOneSecond().then(() => controller.processGuess(location));
 }

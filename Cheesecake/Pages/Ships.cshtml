@@ -2,6 +2,17 @@
 @model Cheesecake.Pages.ShipsModel
 @{
 }
+<audio src="/bombfall1.mp3" preload="auto" id="bombfall"></audio>
+<audio src="/explosion1.mp3" preload="auto" id="explosion"></audio>
+<audio src="/splash.mp3" preload="auto" id="splash"></audio>
+<audio src="/success1.mp3" preload="auto" id="success1"></audio>
+<audio src="/success2.mp3" preload="auto" id="success2"></audio>
+<audio src="/success3.mp3" preload="auto" id="success3"></audio>
+<audio src="/success4.mp3" preload="auto" id="success4"></audio>
+<audio src="/success5.mp3" preload="auto" id="success5"></audio>
+<audio src="/success6.mp3" preload="auto" id="success6"></audio>
+<audio src="/success7.mp3" preload="auto" id="success7"></audio>
+
 <div id="bsheader">
 	<img id="bslogo" src="/battlewarships.png" />
 	<h1 id="timer"><span>⏳</span>10:00</h1>
@@ -12,7 +23,6 @@
 	<table>
 		<tr>
 			<th class="numbers"></th>
-			<th class="numbers">0</th>
 			<th class="numbers">1</th>
 			<th class="numbers">2</th>
 			<th class="numbers">3</th>
@@ -34,7 +44,6 @@
 			<td><div id="06"></div></td>
 			<td><div id="07"></div></td>
 			<td><div id="08"></div></td>
-			<td><div id="09"></div></td>
 		</tr>
 		<tr>
 			<th class="letters">B</th>
@@ -47,7 +56,6 @@
 			<td><div id="16"></div></td>
 			<td><div id="17"></div></td>
 			<td><div id="18"></div></td>
-			<td><div id="19"></div></td>
 		</tr>
 		<tr>
 			<th class="letters">C</th>
@@ -60,7 +68,6 @@
 			<td><div id="26"></div></td>
 			<td><div id="27"></div></td>
 			<td><div id="28"></div></td>
-			<td><div id="29"></div></td>
 		</tr>
 		<tr>
 			<th class="letters">D</th>
@@ -73,7 +80,6 @@
 			<td><div id="36"></div></td>
 			<td><div id="37"></div></td>
 			<td><div id="38"></div></td>
-			<td><div id="39"></div></td>
 		</tr>
 		<tr>
 			<th class="letters">E</th>
@@ -86,7 +92,6 @@
 			<td><div id="46"></div></td>
 			<td><div id="47"></div></td>
 			<td><div id="48"></div></td>
-			<td><div id="49"></div></td>
 		</tr>
 		<tr>
 			<th class="letters">F</th>
@@ -99,7 +104,6 @@
 			<td><div id="56"></div></td>
 			<td><div id="57"></div></td>
 			<td><div id="58"></div></td>
-			<td><div id="59"></div></td>
 		</tr>
 		<tr>
 			<th class="letters">G</th>
@@ -112,7 +116,6 @@
 			<td><div id="66"></div></td>
 			<td><div id="67"></div></td>
 			<td><div id="68"></div></td>
-			<td><div id="69"></div></td>
 		</tr>
 		<tr>
 			<th class="letters">H</th>
@@ -125,7 +128,6 @@
 			<td><div id="76"></div></td>
 			<td><div id="77"></div></td>
 			<td><div id="78"></div></td>
-			<td><div id="79"></div></td>
 		</tr>
 		<tr>
 			<th class="letters">I</th>
@@ -138,22 +140,15 @@
 			<td><div id="86"></div></td>
 			<td><div id="87"></div></td>
 			<td><div id="88"></div></td>
-			<td><div id="89"></div></td>
-		</tr>
-		<tr>
-			<th class="letters">J</th>
-			<td><div id="90"></div></td>
-			<td><div id="91"></div></td>
-			<td><div id="92"></div></td>
-			<td><div id="93"></div></td>
-			<td><div id="94"></div></td>
-			<td><div id="95"></div></td>
-			<td><div id="96"></div></td>
-			<td><div id="97"></div></td>
-			<td><div id="98"></div></td>
-			<td><div id="99"></div></td>
 		</tr>
 	</table>
+</div>
+<div style="font-size:3rem;color:#fff;text-align:center;">
+	4 Battleships to find 🚢🚢🚢<br>
+	🧜‍ Mermaid<br>
+	🦈 Shark<br>
+	🦑 Giant Squid<br>
+	🏆 Treasure<br>
 </div>
 <script type="text/javascript">
 
